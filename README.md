@@ -2,7 +2,6 @@
 
 # Project Title: WeatherMate (Working title)
 
-Authors: Kevin Nguyen, 
 
 Project Description (5 Sentences)
 The WeatherMate App is a project that will provide users with a sleek and user-friendly interface, making it easy to access a wealth of weather information at a glance. It offers real-time weather updates, including temperature, humidity, wind speed, and precipitation forecasts for their current location. Users can also explore weather data for any location globally, enabling travel planning with ease. With interactive maps, detailed weather charts, and customizable alerts, this app will keep users informed and prepared for any weather event. It will provide details for up to 5 days.
