@@ -11,7 +11,7 @@ Project Outline/Plan
 Figure out what libraries/packages to use for data collection (request, BeautfiulSoup?) and storage of weather data. Then implement.
 
 3. Analysis and Visualization.
-Figure out what libraries/packages to use for data analysis and visualization (pandas, matplotlib?). Then implement
+Figure out what libraries/packages to use for data analysis and visualization (numpy, scipy, matplotlib?). Then implement
 
 5. Interface.
 Use Flask to create the web app interface, implementing the data analysis and visualization in its visual component, and buttons in the UI to commence the collection/analysis.
