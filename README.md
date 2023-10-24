@@ -11,7 +11,7 @@ The WeatherMate App is a project that will provide users with a sleek and user-f
 Project Outline/Plan
 1. Data Collection and Storage:
 
-For data collection, we will utilize Python libraries and packages such as requests and BeautifulSoup to fetch data from various sources, including the official website of the National Weather Service, OpenWeatherMap, and AccuWeather API. (https://www.weather.gov/documentation/services-web-api, https://openweathermap.org/api, https://developer.accuweather.com/user/register). To ensure efficient and responsible data retrieval, the collected information will be stored in a text file, a prudent choice that helps prevent over-calling of the APIs and ensures the availability of the data for future analysis and usage. This approach allows us to maintain data integrity and minimize unnecessary network requests while enabling easy data access and management.
+For data collection, we will utilize Python libraries and packages such as requests and BeautifulSoup to fetch data from various sources, including the official website of the [National Weather Service](https://www.weather.gov/documentation/services-web-api), [OpenWeatherMap](https://openweathermap.org/api), and [AccuWeather API](https://developer.accuweather.com/user/register). To ensure efficient and responsible data retrieval, the collected information will be stored in a text file, a prudent choice that helps prevent over-calling of the APIs and ensures the availability of the data for future analysis and usage. This approach allows us to maintain data integrity and minimize unnecessary network requests while enabling easy data access and management.
 
 3. Analysis and Visualization.
 
