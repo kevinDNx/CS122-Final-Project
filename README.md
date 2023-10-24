@@ -21,8 +21,4 @@ To enhance data visualization, we will integrate Matplotlib and Plotly, enabling
 
 Our interface plan will employ the Tkinter library as the foundation for a user-friendly and intuitive graphical interface. Tkinter will provide a familiar and responsive platform for users to interact with our application. There will be a tab to switch between the visualization of different data visualizations. 
 
-Data Collection and Storage Plan (written by Author #1)
-
-Data Analysis and Visualization Plan (Author #2)
-
-A .gitignore file and a license
+.gitignore file and license: included in repo
