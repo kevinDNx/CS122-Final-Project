@@ -14,7 +14,7 @@ Figure out what libraries/packages to use for data collection (request, Beautfiu
 Figure out what libraries/packages to use for data analysis and visualization (numpy, scipy, matplotlib?). Then implement
 
 5. Interface.
-Use Flask to create the web app interface, implementing the data analysis and visualization in its visual component, and buttons in the UI to commence the collection/analysis.
+Use tkinter for the GUI, implementing the data analysis and visualization in its visual component, and buttons in the UI to commence the collection/analysis.
 
 Data Collection and Storage Plan (written by Author #1)
 
