@@ -40,8 +40,8 @@ def update():
 
     latitude, longitude = get_current_location()
     weekly_average = get_weekly_average_forecast(latitude, longitude)
-
     weekly_average_weather = _create_weekly_average_weather_(weekly_average)
+    return weekly_average_weather
 
 #if __name__ == "__main__":
     #update()
