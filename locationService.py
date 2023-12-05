@@ -1,4 +1,5 @@
 import geocoder
+import requests
 
 def get_current_location():
     # Get current location based on IP address
@@ -7,12 +8,4 @@ def get_current_location():
     # Extract latitude and longitude
     latitude = location.latlng[0]
     longitude = location.latlng[1]
-
     return latitude, longitude
-
-if __name__ == "__main__":
-    try:
-        latitude, longitude = get_current_location()
-        print(f"Your current location is: Latitude {latitude}, Longitude {longitude}")
-    except Exception as e:
-        print(f"Error: {e}")
