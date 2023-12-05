@@ -2,6 +2,7 @@ import requests
 
 class DailyForecast:
     def __init__(self, forecast_data):
+        self.name = forecast_data.get("name")
         self.start_time = forecast_data.get("startTime")
         self.end_time = forecast_data.get("endTime")
         self.is_daytime = forecast_data.get("isDaytime")
@@ -48,7 +49,7 @@ def get_weekly_average_forecast(lat, lon):
 
         forecast_data = response_forecast.json()
         daily_forecast_array = [DailyForecast(period) for period in forecast_data["properties"]["periods"]]
-
+        #print(forecast_data["properties"]["periods"])
         return daily_forecast_array
 
     except ValueError as e:
