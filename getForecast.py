@@ -17,7 +17,67 @@ class DailyForecast:
         self.icon_url = forecast_data.get("icon")
         self.short_forecast = forecast_data.get("shortForecast")
         self.detailed_forecast = forecast_data.get("detailedForecast")
+    # Getter methods with comments
+    def get_name(self):
+        """Get the name of the forecast."""
+        return self.name
 
+    def get_start_time(self):
+        """Get the start time of the forecast."""
+        return self.start_time
+
+    def get_end_time(self):
+        """Get the end time of the forecast."""
+        return self.end_time
+
+    def is_daytime(self):
+        """Check if it's daytime in the forecast."""
+        return self.is_daytime
+
+    def get_temperature(self):
+        """Get the temperature in the forecast."""
+        return self.temperature
+
+    def get_temperature_unit(self):
+        """Get the unit of temperature in the forecast."""
+        return self.temperature_unit
+
+    def get_temperature_trend(self):
+        """Get the temperature trend in the forecast."""
+        return self.temperature_trend
+
+    def get_probability_of_precipitation(self):
+        """Get the probability of precipitation in the forecast."""
+        return self.probability_of_precipitation
+
+    def get_dewpoint(self):
+        """Get the dewpoint in the forecast."""
+        return self.dewpoint
+
+    def get_relative_humidity(self):
+        """Get the relative humidity in the forecast."""
+        return self.relative_humidity
+
+    def get_wind_speed(self):
+        """Get the wind speed in the forecast."""
+        return self.wind_speed
+
+    def get_wind_direction(self):
+        """Get the wind direction in the forecast."""
+        return self.wind_direction
+
+    def get_icon_url(self):
+        """Get the URL of the forecast icon."""
+        return self.icon_url
+
+    def get_short_forecast(self):
+        """Get the short forecast description."""
+        return self.short_forecast
+
+    def get_detailed_forecast(self):
+        """Get the detailed forecast description."""
+        return self.detailed_forecast
+    
 def get_weekly_average_forecast(lat, lon):
     """
     Get the weekly average forecast for a given location.
