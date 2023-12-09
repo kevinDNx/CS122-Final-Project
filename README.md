@@ -14,6 +14,13 @@ tkinter
 
 WeatherMate has an imgcache folder to cache images for its weather forecasts, making in-app loading times quicker, but there will be a delay when starting up as the images are downloaded to the cache.
 
+# Looking to the future of WeatherMate:
+- Integrate forecasts of locations besides the user location.
+- Combining the Trends Selection Screen and the Trends Graph Screen into one dynamic screen, which can switch between graphs or display multiple at a time side-by-side
+- Adding more detail to the Detailed Forecast.
+- Allow clicking on the "Weather Blocks" in the Overview screen to view more detailed information about a specific day.
+- Allow the viewing of both daily and nightly forecasts on one screen in an easy to digest manner.
+
 # Project Title: WeatherMate
 
 Authors: Kevin Nguyen, Daniel Bao
