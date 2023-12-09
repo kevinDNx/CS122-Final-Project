@@ -1,12 +1,26 @@
 # CS122-Final-Project
 
-# Project Title: WeatherMate (Working title)
+# HOW TO USE WeatherMate:
+download files on GitHub as zip.
+extract zip.
+run from command line from extracted folder:
+'python main.py'
+
+WeatherMate uses various modules which may need to be installed by the user:
+geocoder
+matplotlib
+numpy
+tkinter
+
+WeatherMate has an img_cache folder to cache images for its weather forecasts, making in-app loading times quicker, but there will be a delay when starting up as the images are downloaded to the cache.
+
+# Project Title: WeatherMate
 
 Authors: Kevin Nguyen, Daniel Bao
 
-Project Description (5 Sentences)
+Project Description 
 
-The WeatherMate App is a project that will provide users with a sleek and user-friendly interface, making it easy to access a wealth of weather information at a glance. It offers real-time weather updates, including temperature, humidity, wind speed, and precipitation forecasts for their current location. The app will gather data from multiple sites and organize the data. Users can also explore weather data for any location globally, enabling travel planning with ease. With interactive maps, detailed weather charts and graphs, this app will keep users informed and prepared for any weather event. It will provide details on the weather for up to 5 days. 
+The WeatherMate App is a project that will provide users with a sleek and user-friendly interface, making it easy to access a wealth of weather information at a glance. It offers real-time weather updates, including temperature, humidity, wind speed, and precipitation forecasts for their current location. The app will gather data from the National Geologic Weather Website and organize the data. Users can also explore weather data for their location. With detailed weather graphs, this app will keep users informed and prepared for any weather event. It will provide details on the weather for up to 7 days. 
 
 Project Outline/Plan
 1. Data Collection and Storage:
@@ -15,7 +29,7 @@ For data collection, we will utilize Python libraries and packages such as reque
 
 3. Analysis and Visualization.
 
-To enhance data visualization, we will integrate Matplotlib and Plotly, enabling dynamic and interactive graphs and charts. Users can explore their data in an engaging and insightful manner, with options to zoom, pan, and analyze data points. Furthermore, Folium will be used to seamlessly incorporate interactive maps, enabling users to visualize geospatial data with ease. This combination of Tkinter, Matplotlib, Plotly, and Folium ensures that our interface not only conveys information effectively but also offers an engaging and visually appealing user experience.
+To enhance data visualization, we will integrate Matplotlib, enabling dynamic and interactive graphs and charts. Users can explore their data and analyze data points. This combination of Tkinter, Matplotlib, Plotly, and Folium ensures that our interface not only conveys information effectively but also offers an engaging and visually appealing user experience.
 
 5. Interface.
 
