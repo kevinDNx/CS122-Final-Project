@@ -14,10 +14,10 @@ day_one = weekly_weather[0]
 
 #print(day_one.temperature_day.get_name()) cant get it since its night time so its None type so add in a if statement if day_one temperature_day is None then skip 
 # Check if temperature_day is None before accessing its properties
-if day_one.temperature_day is not None:
-    print(f"Day One (Daytime): {day_one.temperature_day.get_name()}")
-else:
-    print("Day One (Nighttime): Skipped due to nighttime forecast")
+# if day_one.temperature_day is not None:
+#     print(f"Day One (Daytime): {day_one.temperature_day.get_name()}")
+# else:
+#     print("Day One (Nighttime): Skipped due to nighttime forecast")
 
 
 #-----------------------------------------------#
@@ -26,21 +26,21 @@ else:
 # accesing more of the raw data by calling this total of 14 days and nights combined
 weekly_weather = get_weekly_average()
 
-print(weekly_weather[0].get_name())
-print(weekly_weather[1].get_name())
-print(weekly_weather[2].get_name())
-print(weekly_weather[3].get_name())
-print(weekly_weather[4].get_name())
+# print(weekly_weather[0].get_name())
+# print(weekly_weather[1].get_name())
+# print(weekly_weather[2].get_name())
+# print(weekly_weather[3].get_name())
+# print(weekly_weather[4].get_name())
 
-print(weekly_weather[0].get_temperature())
-print(weekly_weather[1].get_temperature())
-print(weekly_weather[2].get_temperature())
+# print(weekly_weather[0].get_temperature())
+# print(weekly_weather[1].get_temperature())
+# print(weekly_weather[2].get_temperature())
 
-print(weekly_weather[1].get_short_forecast())
-print(weekly_weather[1].get_detailed_forecast())
-print(weekly_weather[1].get_icon_url())
-print(weekly_weather[1].get_start_time())
-print(weekly_weather[1].get_end_time())
+# print(weekly_weather[1].get_short_forecast())
+# print(weekly_weather[1].get_detailed_forecast())
+# print(weekly_weather[1].get_icon_url())
+# print(weekly_weather[1].get_start_time())
+# print(weekly_weather[1].get_end_time())
 
 import tkinter as tk
 import requests
@@ -48,6 +48,7 @@ from PIL import Image, ImageTk
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
+import re
 
 
 class WeatherApp(tk.Frame):
@@ -56,11 +57,9 @@ class WeatherApp(tk.Frame):
         self.detailed = False
         super().__init__(master)
 
-        # Create top section
         top_section = tk.Frame(self)
         top_section.pack(side="top", fill="both")
 
-        # Add title label with neutral and factually accurate text
         title_label = tk.Label(top_section, text="Weekly Forecast Overview", font=("Arial", 20))
         title_label.pack(pady=10)
 
@@ -84,7 +83,6 @@ class WeatherApp(tk.Frame):
                 
             y += 1
         
-        # Create bottom section
         bottom_section = tk.Frame(self)
         bottom_section.pack(side="bottom", fill="both")
 
@@ -136,10 +134,8 @@ class WeatherApp(tk.Frame):
 
     def create_weather_slot(self, topsection, i, day):
         slot_frame = tk.Frame(topsection, borderwidth=2, relief="groove", highlightthickness=1)
-        # Anchor the frame to the top
         slot_frame.pack(side="left", anchor="n", padx=10)
 
-        # Add day name label
         day_label = tk.Label(slot_frame, text=f"{day.get_name()}", font=("Arial", 12))
         day_label.pack(pady=5)
 
@@ -171,89 +167,121 @@ class WeatherApp(tk.Frame):
         return slot_frame
     
     def open_trends_window(self):
-        # Create a new window
+        """
+        Opens a new window containing buttons for different weather trends.
+        """
+        # Create a new toplevel window
         trends_window = tk.Toplevel(self)
         trends_window.title("Trends")
+        trends_window.minsize(width=450, height=250)
+        trends_window.maxsize(width=500, height=450)
 
-        # Create the main frame
-        main_frame = tk.Frame(trends_window)
-        main_frame.pack(fill="both", expand=True)
-        # Add a label for the window title
-        trends_label = tk.Label(trends_window, text="Weather Trends: Temperature", font=("Arial", 16))
+        # Add label for window title
+        trends_label = tk.Label(trends_window, text="Weather Trends:", font=("Arial", 16))
         trends_label.pack(pady=10)
-        # Split the frame left and right
-        left_frame = tk.Frame(main_frame)
-        left_frame.pack(side="left", fill="both", expand=True)
 
-        right_frame = tk.Frame(main_frame)
-        right_frame.pack(side="right", fill="both", expand=True)
+        # Define a frame to hold the buttons
+        button_frame = tk.Frame(trends_window)
+        button_frame.pack(fill="both", expand=True)
 
-        # Define two subframes within the right_frame
-        right_column1 = tk.Frame(right_frame)
-        right_column1.pack(side="left", fill="both", expand=True)
+        # Create buttons for each trend
+        trend_buttons = {
+            "Temperature": tk.Button(button_frame, text="Temperature", command= lambda: self.create_graph("Temperature")),
+            "Precipitation": tk.Button(button_frame, text="Precipitation", command= lambda: self.create_graph("Precipitation")),
+            "Wind Speed": tk.Button(button_frame, text="Wind Speed", command= lambda: self.create_graph("Wind Speed")),
+            "Dew Point": tk.Button(button_frame, text="Dew Point", command= lambda: self.create_graph("Dew Point")),
+            "Relative Humidity": tk.Button(button_frame, text="Relative Humidity", command= lambda: self.create_graph("Relative Humidity")),
+        }
 
-        temperature_button = tk.Button(right_column1, text="Temperature")
-        temperature_button.pack(pady=2)
+        # Pack the buttons in a grid layout
+        for i, (trend, button) in enumerate(trend_buttons.items()):
+            button.pack(fill="x")
 
-        precipitation_button = tk.Button(right_column1, text="Precipitation")
-        precipitation_button.pack(pady=2)
+    def create_graph(self, trend):
 
-        wind_speed_button = tk.Button(right_column1, text="Wind Speed")
-        wind_speed_button.pack(pady=2)
+        graph_window = tk.Toplevel(self)
+        graph_window.title(f"{trend} Trend")
+        graph_window.minsize(width=900, height=500)
+        graph_window.maxsize(width=1000, height=900)
 
-
-        right_column2 = tk.Frame(right_frame)
-        right_column2.pack(side="left", fill="both", expand=True)
-
-        wind_direction_button = tk.Button(right_column2, text="Wind Direction")
-        wind_direction_button.pack(pady=2)
-
-        dew_point_button = tk.Button(right_column2, text="Dew Point")
-        dew_point_button.pack(pady=2)
-
-        relative_humidity_button = tk.Button(right_column2, text="Relative Humidity")
-        relative_humidity_button.pack(pady=2)
-
-        temperature_button.pack(pady=5, fill="x")
-        precipitation_button.pack(pady=5, fill="x")
-        wind_speed_button.pack(pady=5, fill="x")
-
-        wind_direction_button.pack(pady=5, fill="x")
-        dew_point_button.pack(pady=5, fill="x")
-        relative_humidity_button.pack(pady=5, fill="x")
-
-        # Import NumPy for polynomial fit
-
-        
-
-        # Create a placeholder figure for the graph
         fig, ax = plt.subplots(figsize=(5, 3))
+        plt.subplots_adjust(left=0.15, right=0.95, bottom=0.15, top=0.95)
 
-        # Generate mock temperature data for 14 days
-        mock_data = [66, 62, 60, 66, 65, 62, 63]
+        names, y = self.get_graph_info(trend)
+        x = range(14)
 
-        # Extract x and y data points
-        x = range(7)
-        y = mock_data
-
-        # Calculate the coefficients of the trend line
         z = np.polyfit(x, y, 1)
         trend_line = np.poly1d(z)
 
-        # Plot the data as a line graph
-        ax.plot(range(7), mock_data)
-        ax.plot(x, trend_line(x), color="red", linestyle="--", linewidth=1)
+        high_index = np.argmax(y)
+        low_index = np.argmin(y)
 
-        # Set axis labels
-        ax.set_xlabel("Day")
-        ax.set_ylabel("Temperature (°F)")
+        high_value = y[high_index]
+        low_value = y[low_index]
 
-        # Add title
-        ax.set_title("Temperature Trend (12/6 - 12/13)")
+        ax.annotate(f"High: {high_value}", xy=(x[high_index], high_value), color="green")
+        ax.annotate(f"Low: {low_value}", xy=(x[low_index], low_value), color="blue")
 
-        # Convert the figure to an image for Tkinter
-        canvas = FigureCanvasTkAgg(fig, master=left_frame)
+        ax.plot(range(14), y, color="skyblue", linewidth=2)
+        ax.plot(x, trend_line(x), color="orange", linestyle=":", linewidth=1)
+
+        ax.set_xlabel("Forecast Interval", fontweight="bold", fontsize=12)
+        if (trend == "Temperature"):
+            ax.set_ylabel("Temperature (°F)", fontweight="bold", fontsize=12)
+        if (trend == "Precipitation"):
+            ax.set_ylabel("Precipitation Chance (%)", fontweight="bold", fontsize=12)
+        if (trend == "Wind Speed"):
+            ax.set_ylabel("Wind Speed (mph)", fontweight="bold", fontsize=12)
+        if (trend == "Dew Point"):
+            ax.set_ylabel("Dew Point (°C)", fontweight="bold", fontsize=12)
+        if (trend == "Relative Humidity"):
+            ax.set_ylabel("Relative Humidity (%)", fontweight="bold", fontsize=12)        
+        ax.set_title(f"{trend} Trend ({names[0]} - {names[-1]})", fontweight="bold", fontsize=14)
+
+
+        ax.set_xticks(range(len(names)))
+        ax.set_xticklabels(names, rotation=45, ha="right", fontsize=8)
+
+
+        ax.grid(True, which="both", linestyle="--", linewidth=0.5, color="gray")
+
+        # Convert the figure to a Tkinter canvas
+        canvas = FigureCanvasTkAgg(fig, master=graph_window)
         canvas.get_tk_widget().pack(fill="both", expand=True)
+
+        # Display the graph window
+        graph_window.mainloop()
+
+    def get_graph_info(self, trend):
+        names = []
+        y = []
+        for i in range(0,len(weekly_weather)):
+            names.append(weekly_weather[i].get_name())
+
+            if (trend == "Temperature"):
+                y.append(weekly_weather[i].get_temperature())
+            elif (trend == "Precipitation"):
+                y.append(weekly_weather[i].get_probability_of_precipitation())
+                if y[i] == None:
+                    y[i] = 0
+            elif (trend == "Wind Speed"):
+                y.append(weekly_weather[i].get_wind_speed())
+                # Extract all numbers using regular expressions
+                numbers = re.findall(r"\d+", y[i])
+                # Convert strings to integers
+                numbers = [int(num) for num in numbers]
+                # Find and print the highest number
+                y[i] = max(numbers)
+            elif (trend == "Dew Point"):
+                y.append(weekly_weather[i].get_dewpoint())
+            elif (trend == "Relative Humidity"):
+                y.append(weekly_weather[i].get_relative_humidity())
+        
+        # print(names)
+        # print(y)
+        return names, y
+
+ 
 
         
 
