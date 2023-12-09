@@ -12,7 +12,7 @@ matplotlib
 numpy
 tkinter
 
-WeatherMate has an img_cache folder to cache images for its weather forecasts, making in-app loading times quicker, but there will be a delay when starting up as the images are downloaded to the cache.
+WeatherMate has an imgcache folder to cache images for its weather forecasts, making in-app loading times quicker, but there will be a delay when starting up as the images are downloaded to the cache.
 
 # Project Title: WeatherMate
 
